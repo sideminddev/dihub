@@ -1,0 +1,8 @@
+Principais aplicações do Puppeteer:
+- Web Scraping: Extrair dados de páginas da web automaticamente.
+- Automatização de Testes: Testar funcionalidades de sites em navegadores.
+Captura de Screenshots: Tirar screenshots de páginas da web.
+Automação de Navegadores: Automatizar interações com páginas, como cliques e preenchimento de formulários.
+
+- Uso para Web Scraping:
+Puppeteer permite acessar uma página, renderizar seu conteúdo completo (inclusive JavaScript dinâmico), e então navegar pelo DOM da página para extrair dados. Ele simula o comportamento de um navegador, garantindo que o conteúdo carregado dinamicamente possa ser acessado e capturado. Para melhor performance, o Puppeteer conta com o modo headless e o bloqueio de CSS e imagens, que garante o scraping sem a necessidade de usar o navegador ou carregar os estilos e imagens do site.

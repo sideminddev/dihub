@@ -1,0 +1,20 @@
+Em TypeScript, tanto tipos quanto interfaces são usados para definir a estrutura de objetos, funções ou outros tipos de dados. A principal diferença está em como eles funcionam e em suas capacidades:
+
+- Interfaces:
+São mais apropriadas para descrever a forma de objetos, como contratos de classes ou objetos.
+Podem ser extendidas por outras interfaces ou classes, permitindo uma forma mais robusta de herança.
+Interface merging: duas interfaces com o mesmo nome podem ser combinadas automaticamente, adicionando novas propriedades.
+Usadas principalmente quando queremos definir a estrutura de um objeto ou definir contratos entre classes.
+
+- Tipos (type):
+Podem ser usados para definir tipos complexos e combinar diferentes tipos (como unions, ex: string | number).
+Diferente das interfaces, os tipos podem ser aliased (renomeados), permitindo definir, por exemplo, tipos primitivos, objetos, funções, arrays ou unions.
+Não suportam a junção (merging) como as interfaces.
+Usados quando precisamos definir tipos mais flexíveis, como combinações de diferentes tipos.
+
+- Uso: 
+Interfaces: Usado quando estiver definindo contratos para objetos e classes, como a estrutura de dados que será compartilhada entre módulos (ex. ICreateProduct, IUpdateUser, etc.). 
+Tipos: Usado para combinações de tipos, tipos primitivos ou definições mais flexíveis, como union types ou tipos compostos (ex. Product, User).
+
+- Conceito de Generics:
+Generics permitem criar componentes que funcionam com qualquer tipo de dado, mantendo a segurança de tipos. Eles atuam como placeholders para tipos, que são definidos na hora do uso, proporcionando flexibilidade e reutilização do código sem precisar duplicar a lógica para cada tipo diferente.

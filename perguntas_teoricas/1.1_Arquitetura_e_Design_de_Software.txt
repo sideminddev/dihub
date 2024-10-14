@@ -1,0 +1,26 @@
+Arquitetura e Design de Software com NestJS em Microserviços
+
+- Organização do Projeto em Arquitetura de Microserviços
+
+Em uma arquitetura de microserviços usando NestJS, o projeto seria organizado em múltiplos microserviços independentes, cada um encapsulando uma funcionalidade específica e autônoma. Cada microserviço teria seu próprio "AppModule", com responsabilidades específicas e bem definidas. Por exemplo:
+Serviço de Autenticação: Responsável pela gestão de usuários e autenticação (utilizamos Keycloak).
+Serviço de Mensageria: Para processamento de mensagens e notificações via e-mail, sms e etc.
+Serviço de conciliação: Lida com arquivos (pdf, xlsx, csv) para extração de dados para fornecer informações relevantes ao nosso sistema.
+Cada microserviço seria implementado como uma aplicação NestJS separada, e utilizaria um barramento de comunicação assíncrona (RabbitMQ, Kafka) ou síncrona (HTTP, gRPC) para se comunicar com outros serviços. O nestjs/microservices seria utilizado para facilitar a criação de microserviços no NestJS. Também utilizamos eventos para comunicação interna dos módulos.
+
+A configuração de cada serviço incluiria:
+
+Transport Layer: Definição do mecanismo de transporte entre serviços, como mensagens via RabbitMQ ou eventos via Redis.
+Controle de Autorização: Usaria guardas globais como AuthGuard para proteger rotas e gerenciar permissões entre microserviços.
+
+Exemplo Prático: Se o microserviço de conciliação precisar disparar um evento após a conciliação de uma transação, ele poderia publicar um evento no RabbitMQ. O microserviço de mensageria, por sua vez, consumiria esse evento para enviar uma notificação ao usuário.
+
+- Principais Componentes e Interações
+
+Gateway API: Um ponto central para acessar os microserviços. Este gateway poderia ser uma aplicação NestJS com REST, e teria a responsabilidade de rotear as requisições para os microserviços corretos.
+Database per Service: Cada microserviço teria seu próprio banco de dados (Database per Service), seguindo os princípios de independência total, de modo que alterações de esquema em um serviço não afetam os outros.
+Gerenciamento de Estado e Comunicação
+
+- Gerenciamento de Estado: 
+Em uma aplicação distribuída, o estado é mantido de forma local em cada microserviço, e as interações entre eles ocorrem por meio de eventos ou mensagens. Isso evita o compartilhamento direto de estado, promovendo um desacoplamento. O EventEmitterModule pode ser usado internamente em cada serviço para lidar com eventos e gatilhos. Contamos também com interceptadores junto do CLS (Continuation Local Storage) para armazenar dados de requisições e usar em nossa aplicação.
+
